@@ -1,0 +1,438 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fiberise Fit - Under Maintenance</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        /* Maintenance Page Specific Styles */
+        .maintenance-container {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 2rem;
+            position: relative;
+        }
+
+        .maintenance-content {
+            text-align: center;
+            max-width: 600px;
+            z-index: 10;
+            position: relative;
+        }
+
+        .maintenance-logo {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.75rem;
+            margin-bottom: 3rem;
+        }
+
+        .maintenance-logo img {
+            width: 50px;
+            height: auto;
+            filter: brightness(0) invert(1);
+            opacity: 0.9;
+        }
+
+        .maintenance-logo-text {
+            font-family: 'Avenir Next LT Pro', sans-serif;
+            font-size: 2rem;
+            font-weight: 400;
+            color: #ffffff;
+            letter-spacing: 0.5px;
+        }
+
+        .maintenance-title {
+            font-family: 'Avenir Next LT Pro', 'Poppins', sans-serif;
+            font-size: clamp(2.5rem, 6vw, 4rem);
+            font-weight: 200;
+            color: rgba(255, 255, 255, 0.9);
+            letter-spacing: 1px;
+            line-height: 1.2;
+            margin-bottom: 1.5rem;
+            opacity: 0;
+            transform: translateY(30px);
+            animation: fadeInUp 1s ease-out 0.3s forwards;
+        }
+
+        .maintenance-subtitle {
+            font-family: 'Avenir Next LT Pro', sans-serif;
+            font-size: clamp(1.1rem, 3vw, 1.4rem);
+            font-weight: 300;
+            color: rgba(255, 255, 255, 0.45);
+            line-height: 1.6;
+            margin-bottom: 2.5rem;
+            opacity: 0;
+            transform: translateY(30px);
+            animation: fadeInUp 1s ease-out 0.6s forwards;
+        }
+
+        .maintenance-description {
+            font-family: 'Avenir Next LT Pro', sans-serif;
+            font-size: clamp(1rem, 2.5vw, 1.2rem);
+            font-weight: 300;
+            color: rgba(255, 255, 255, 0.45);
+            line-height: 1.7;
+            margin-bottom: 3rem;
+            opacity: 0;
+            transform: translateY(30px);
+            animation: fadeInUp 1s ease-out 0.9s forwards;
+        }
+
+        .maintenance-features {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1.5rem;
+            margin-bottom: 3rem;
+            opacity: 0;
+            transform: translateY(30px);
+            animation: fadeInUp 1s ease-out 1.2s forwards;
+        }
+
+        .maintenance-feature {
+            background: rgba(255, 255, 255, 0.08);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            border-radius: 16px;
+            padding: 1.5rem;
+            text-align: center;
+            transition: all 0.3s ease;
+        }
+
+        .maintenance-feature:hover {
+            background: rgba(255, 255, 255, 0.12);
+            transform: translateY(-5px);
+        }
+
+        .maintenance-feature-icon {
+            font-size: 2rem;
+            margin-bottom: 1rem;
+            color: #d58b2a;
+        }
+
+        .maintenance-feature-title {
+            font-family: 'Avenir Next LT Pro', sans-serif;
+            font-size: 1.1rem;
+            font-weight: 400;
+            color: rgba(255, 255, 255, 0.9);
+            margin-bottom: 0.5rem;
+        }
+
+        .maintenance-feature-text {
+            font-family: 'Avenir Next LT Pro', sans-serif;
+            font-size: 0.9rem;
+            font-weight: 300;
+            color: rgba(255, 255, 255, 0.45);
+            line-height: 1.5;
+        }
+
+        .maintenance-contact {
+            background: rgba(255, 255, 255, 0.08);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            border-radius: 20px;
+            padding: 2rem;
+            margin-bottom: 2rem;
+            opacity: 0;
+            transform: translateY(30px);
+            animation: fadeInUp 1s ease-out 1.5s forwards;
+        }
+
+        .maintenance-contact-title {
+            font-family: 'Avenir Next LT Pro', sans-serif;
+            font-size: 1.3rem;
+            font-weight: 400;
+            color: rgba(255, 255, 255, 0.9);
+            margin-bottom: 1rem;
+        }
+
+        .maintenance-contact-info {
+            font-family: 'Avenir Next LT Pro', sans-serif;
+            font-size: 1rem;
+            font-weight: 300;
+            color: rgba(255, 255, 255, 0.45);
+            line-height: 1.6;
+        }
+
+        .maintenance-contact-info a {
+            color: #d58b2a;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .maintenance-contact-info a:hover {
+            color: #e7a23c;
+        }
+
+        .maintenance-countdown {
+            background: linear-gradient(135deg, rgba(213, 139, 42, 0.1), rgba(231, 162, 60, 0.1));
+            border: 1px solid rgba(213, 139, 42, 0.3);
+            border-radius: 20px;
+            padding: 2rem;
+            margin-bottom: 2rem;
+            opacity: 0;
+            transform: translateY(30px);
+            animation: fadeInUp 1s ease-out 1.8s forwards;
+        }
+
+        .maintenance-countdown-title {
+            font-family: 'Avenir Next LT Pro', sans-serif;
+            font-size: 1.2rem;
+            font-weight: 400;
+            color: #d58b2a;
+            margin-bottom: 1rem;
+        }
+
+        .maintenance-countdown-timer {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            flex-wrap: wrap;
+        }
+
+        .countdown-item {
+            text-align: center;
+            min-width: 60px;
+        }
+
+        .countdown-number {
+            font-family: 'Avenir Next LT Pro', sans-serif;
+            font-size: 2rem;
+            font-weight: 600;
+            color: #d58b2a;
+            display: block;
+        }
+
+        .countdown-label {
+            font-family: 'Avenir Next LT Pro', sans-serif;
+            font-size: 0.8rem;
+            font-weight: 300;
+            color: rgba(255, 255, 255, 0.45);
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .maintenance-footer {
+            font-family: 'Avenir Next LT Pro', sans-serif;
+            font-size: 0.9rem;
+            font-weight: 300;
+            color: rgba(255, 255, 255, 0.3);
+            opacity: 0;
+            transform: translateY(30px);
+            animation: fadeInUp 1s ease-out 2.1s forwards;
+        }
+
+        @keyframes fadeInUp {
+            0% {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            100% {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .maintenance-container {
+                padding: 1rem;
+            }
+
+            .maintenance-logo {
+                margin-bottom: 2rem;
+            }
+
+            .maintenance-logo-text {
+                font-size: 1.5rem;
+            }
+
+            .maintenance-features {
+                grid-template-columns: 1fr;
+                gap: 1rem;
+            }
+
+            .maintenance-feature {
+                padding: 1.25rem;
+            }
+
+            .maintenance-contact {
+                padding: 1.5rem;
+            }
+
+            .maintenance-countdown {
+                padding: 1.5rem;
+            }
+
+            .maintenance-countdown-timer {
+                gap: 0.75rem;
+            }
+
+            .countdown-number {
+                font-size: 1.5rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .maintenance-logo-text {
+                font-size: 1.25rem;
+            }
+
+            .maintenance-feature {
+                padding: 1rem;
+            }
+
+            .maintenance-contact {
+                padding: 1.25rem;
+            }
+
+            .maintenance-countdown {
+                padding: 1.25rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Background Particles -->
+    <div class="bg-particles">
+        <div class="bg-particle" style="left: 10%; top: 20%; animation-delay: 0s;"></div>
+        <div class="bg-particle" style="left: 85%; top: 15%; animation-delay: 0.5s;"></div>
+        <div class="bg-particle" style="left: 30%; top: 70%; animation-delay: 1s;"></div>
+        <div class="bg-particle" style="left: 70%; top: 60%; animation-delay: 1.5s;"></div>
+        <div class="bg-particle" style="left: 50%; top: 40%; animation-delay: 0.8s;"></div>
+        <div class="bg-particle" style="left: 20%; top: 80%; animation-delay: 1.2s;"></div>
+        <div class="bg-particle" style="left: 90%; top: 50%; animation-delay: 0.3s;"></div>
+        <div class="bg-particle" style="left: 15%; top: 45%; animation-delay: 1.8s;"></div>
+        <div class="bg-particle" style="left: 60%; top: 25%; animation-delay: 0.6s;"></div>
+        <div class="bg-particle" style="left: 40%; top: 85%; animation-delay: 1.4s;"></div>
+    </div>
+
+    <div class="maintenance-container">
+        <div class="maintenance-content">
+            <!-- Logo -->
+            <div class="maintenance-logo">
+                <img src="images/Group 568.svg" alt="Fiberise Fit Logo">
+                <span class="maintenance-logo-text">Fiberise Fit</span>
+            </div>
+
+            <!-- Main Content -->
+            <h1 class="maintenance-title">We're Enhancing Your Experience</h1>
+            <p class="maintenance-subtitle">Temporarily Under Maintenance</p>
+            <p class="maintenance-description">
+                We're working hard to bring you an even better Fiberise Fit experience. 
+                Our team is implementing exciting new features and improvements to serve you better.
+            </p>
+
+            <!-- Features Coming Soon -->
+            <div class="maintenance-features">
+                <div class="maintenance-feature">
+                    <div class="maintenance-feature-icon">⚡</div>
+                    <h3 class="maintenance-feature-title">Enhanced Performance</h3>
+                    <p class="maintenance-feature-text">Faster loading and smoother experience</p>
+                </div>
+                <div class="maintenance-feature">
+                    <div class="maintenance-feature-icon">🎯</div>
+                    <h3 class="maintenance-feature-title">New Features</h3>
+                    <p class="maintenance-feature-text">Exciting updates and improved functionality</p>
+                </div>
+                <div class="maintenance-feature">
+                    <div class="maintenance-feature-icon">🔒</div>
+                    <h3 class="maintenance-feature-title">Enhanced Security</h3>
+                    <p class="maintenance-feature-text">Better protection for your data and privacy</p>
+                </div>
+            </div>
+
+            <!-- Contact Information -->
+            <div class="maintenance-contact">
+                <h3 class="maintenance-contact-title">Need Immediate Assistance?</h3>
+                <div class="maintenance-contact-info">
+                    <p>For urgent inquiries or support, please contact us:</p>
+                    <p>📧 Email: <a href="mailto:support@fiberisefit.com">support@fiberisefit.com</a></p>
+                    <p>📱 Phone: <a href="tel:+1234567890">+1 (234) 567-890</a></p>
+                    <p>💬 WhatsApp: <a href="https://wa.me/1234567890">+1 (234) 567-890</a></p>
+                </div>
+            </div>
+
+            <!-- Countdown Timer -->
+            <div class="maintenance-countdown">
+                <h3 class="maintenance-countdown-title">Expected Completion</h3>
+                <div class="maintenance-countdown-timer">
+                    <div class="countdown-item">
+                        <span class="countdown-number" id="hours">00</span>
+                        <span class="countdown-label">Hours</span>
+                    </div>
+                    <div class="countdown-item">
+                        <span class="countdown-number" id="minutes">00</span>
+                        <span class="countdown-label">Minutes</span>
+                    </div>
+                    <div class="countdown-item">
+                        <span class="countdown-number" id="seconds">00</span>
+                        <span class="countdown-label">Seconds</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Footer -->
+            <div class="maintenance-footer">
+                <p>Thank you for your patience. We'll be back soon with something amazing!</p>
+                <p>&copy; 2024 Fiberise Fit. All rights reserved.</p>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Countdown Timer
+        function updateCountdown() {
+            // Set your target date here (example: 24 hours from now)
+            const targetDate = new Date().getTime() + (24 * 60 * 60 * 1000);
+            
+            const now = new Date().getTime();
+            const distance = targetDate - now;
+            
+            if (distance < 0) {
+                // Countdown finished
+                document.getElementById('hours').textContent = '00';
+                document.getElementById('minutes').textContent = '00';
+                document.getElementById('seconds').textContent = '00';
+                return;
+            }
+            
+            const hours = Math.floor(distance / (1000 * 60 * 60));
+            const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+            const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+            
+            document.getElementById('hours').textContent = hours.toString().padStart(2, '0');
+            document.getElementById('minutes').textContent = minutes.toString().padStart(2, '0');
+            document.getElementById('seconds').textContent = seconds.toString().padStart(2, '0');
+        }
+        
+        // Update countdown every second
+        updateCountdown();
+        setInterval(updateCountdown, 1000);
+        
+        // Add some interactive effects
+        document.addEventListener('DOMContentLoaded', function() {
+            // Add hover effects to features
+            const features = document.querySelectorAll('.maintenance-feature');
+            features.forEach(feature => {
+                feature.addEventListener('mouseenter', function() {
+                    this.style.transform = 'translateY(-5px) scale(1.02)';
+                });
+                
+                feature.addEventListener('mouseleave', function() {
+                    this.style.transform = 'translateY(0) scale(1)';
+                });
+            });
+        });
+    </script>
+</body>
+</html>
