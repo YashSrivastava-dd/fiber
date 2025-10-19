@@ -361,36 +361,42 @@ document.addEventListener('DOMContentLoaded', () => {
                 
                 if (expanded) {
                     if (accordionText === 'Reduces Hunger, Enhances Satiety') {
-                        imageElement.src = 'images/PHOTO-2025-10-16-16-50-07.jpg';
+                        imageElement.src = 'images/PHOTO-2025-10-16-17-09-09-removebg-preview.png';
                         imageElement.alt = 'Hunger Reduction Benefits';
+                        imageElement.classList.add('hunger-image');
                         imageContainer.classList.add('show');
                         console.log('Showing hunger image');
                     } else if (accordionText === 'Improves Energy and Focus') {
-                        imageElement.src = 'images/PHOTO-2025-10-16-16-58-26.jpg';
+                        imageElement.src = 'images/Group 590.png';
                         imageElement.alt = 'Energy and Focus Benefits';
+                        imageElement.classList.remove('hunger-image');
                         imageContainer.classList.add('show');
                         console.log('Showing energy image');
                     } else if (accordionText === 'Elevates Mood') {
-                        imageElement.src = 'images/PHOTO-2025-10-16-16-58-27.jpg';
+                        imageElement.src = 'images/ChatGPT Image Oct 17, 2025 at 03_50_04 PM.png';
                         imageElement.alt = 'Mood Elevation Benefits';
+                        imageElement.classList.remove('hunger-image');
                         imageContainer.classList.add('show');
                         console.log('Showing mood image');
                     } else if (accordionText === 'Pre & Pro Biotics') {
-                        imageElement.src = 'images/PHOTO-2025-10-16-16-59-35.jpg';
+                        imageElement.src = 'images/ChatGPT Image Oct 17, 2025 at 12_59_49 PM.png';
                         imageElement.alt = 'Pre & Pro Biotics Benefits';
+                        imageElement.classList.remove('hunger-image');
                         imageContainer.classList.add('show');
                         console.log('Showing probiotics image');
                     } else {
                         // Show default image for other accordion items
-                        imageElement.src = 'images/PHOTO-2025-10-16-17-09-09.jpg';
+                        imageElement.src = 'images/ChatGPT Image Oct 17, 2025 at 04_52_53 PM.png';
                         imageElement.alt = 'Fiber X Benefits';
+                        imageElement.classList.remove('hunger-image');
                         imageContainer.classList.add('show');
                         console.log('Showing default image');
                     }
                 } else {
                     // When accordion is collapsed, show default image
-                    imageElement.src = 'images/PHOTO-2025-10-16-17-09-09.jpg';
+                    imageElement.src = 'images/ChatGPT Image Oct 17, 2025 at 04_52_53 PM.png';
                     imageElement.alt = 'Fiber X Benefits';
+                    imageElement.classList.remove('hunger-image');
                     imageContainer.classList.add('show');
                     console.log('Showing default image - accordion collapsed');
                 }
