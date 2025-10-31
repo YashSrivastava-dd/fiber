@@ -28,6 +28,14 @@
             </ul>
         </nav>
         
+        <!-- Cart Button -->
+        <button class="cart-button" id="cart-button">
+            <svg class="cart-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z"/>
+            </svg>
+            <span class="cart-count" id="cart-count">0</span>
+        </button>
+        
         <!-- Mobile Hamburger Menu -->
         <button class="hamburger-menu" id="hamburger-menu">
             <span class="hamburger-line"></span>
@@ -45,6 +53,48 @@
             </ul>
         </nav>
     </header>
+    
+    <!-- Cart Drawer -->
+    <div class="cart-drawer" id="cart-drawer">
+        <div class="cart-overlay" id="cart-overlay"></div>
+        <div class="cart-panel">
+            <div class="cart-header">
+                <h2 class="cart-title">Your Cart</h2>
+                <button class="cart-close" id="cart-close">
+                    <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/>
+                    </svg>
+                </button>
+            </div>
+            
+            <div class="cart-items" id="cart-items">
+                <!-- Cart items will be dynamically added here -->
+                <div class="cart-empty">
+                    <svg class="empty-cart-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z"/>
+                    </svg>
+                    <p class="empty-cart-text">Your cart is empty</p>
+                    <p class="empty-cart-subtext">Add products to get started</p>
+                </div>
+            </div>
+            
+            <div class="cart-footer">
+                <div class="cart-summary">
+                    <div class="cart-total">
+                        <span class="total-label">Total</span>
+                        <span class="total-amount" id="cart-total">₹0</span>
+                    </div>
+                    <p class="cart-note">Free shipping on all orders</p>
+                </div>
+                <button class="cart-checkout-btn" id="cart-checkout-btn">
+                    <span>Proceed to Checkout</span>
+                    <svg class="checkout-arrow" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7l5 5m0 0l-5 5m5-5H6"/>
+                    </svg>
+                </button>
+            </div>
+        </div>
+    </div>
 
     <!-- Splash Screen -->
     <div id="splash-screen" class="splash-screen">
@@ -557,6 +607,19 @@
         </div>
     </footer>
     
+    <!-- Shopify Buy Button SDK -->
+    <script type="text/javascript">
+        // Shopify Buy Button Configuration
+        window.shopifyConfig = {
+            domain: 'fiberisefit.myshopify.com', // ✅ Your Shopify store domain
+            storefrontAccessToken: '07ea551b44b109698f0883fb16f28bee', // ✅ Your Storefront API token
+            products: {
+                thirtyDay: 'fiber-x-30-day-plan', // ✅ 30 Day Plan product handle
+                hundredDay: 'fiber-x-100-day-challenge' // ✅ 100 Day Challenge product handle
+            }
+        };
+    </script>
+    <script src="https://sdks.shopifycdn.com/buy-button/latest/buy-button-storefront.min.js"></script>
     <script src="script.js"></script>
 </body>
 </html>
