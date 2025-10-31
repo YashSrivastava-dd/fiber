@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shipping & Delivery Policy - Fiber X</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        /* Override any overflow restrictions from main CSS */
+        html, body {
+            overflow-x: hidden !important;
+            overflow-y: auto !important;
+            height: auto !important;
+            position: relative !important;
+        }
+        
+        body.splash-active {
+            overflow: auto !important;
+            height: auto !important;
+            position: relative !important;
+        }
+        
+        .policy-section {
+            min-height: 100vh;
+            padding: 120px 20px 80px;
+            background: linear-gradient(135deg, #0a0a0a 0%, #1a0a2e 100%);
+            position: relative;
+        }
+        
+        .policy-container {
+            max-width: 900px;
+            margin: 0 auto;
+            background: rgba(255, 255, 255, 0.03);
+            border-radius: 20px;
+            padding: 60px;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        .policy-title {
+            font-size: 3rem;
+            font-weight: 700;
+            color: #fff;
+            margin-bottom: 10px;
+            background: linear-gradient(135deg, #fff 0%, #a78bfa 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        
+        .policy-date {
+            font-size: 0.9rem;
+            color: rgba(255, 255, 255, 0.5);
+            margin-bottom: 40px;
+        }
+        
+        .policy-content {
+            color: rgba(255, 255, 255, 0.8);
+            line-height: 1.8;
+            font-size: 1rem;
+        }
+        
+        .policy-content h3 {
+            color: #fff;
+            font-size: 1.5rem;
+            margin-top: 30px;
+            margin-bottom: 15px;
+        }
+        
+        .policy-content p {
+            margin-bottom: 20px;
+        }
+        
+        .policy-content ul {
+            margin: 20px 0;
+            padding-left: 30px;
+        }
+        
+        .policy-content ul li {
+            margin-bottom: 10px;
+            position: relative;
+        }
+        
+        .policy-content ul li::marker {
+            color: #a78bfa;
+        }
+        
+        /* Back to Home Button */
+        .back-button-container {
+            position: fixed;
+            top: 20px;
+            left: 20px;
+            z-index: 9999;
+        }
+        
+        .back-to-home-btn {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            padding: 12px 24px;
+            background: rgba(167, 139, 250, 0.2);
+            border: 2px solid rgba(167, 139, 250, 0.5);
+            border-radius: 50px;
+            color: #fff;
+            text-decoration: none;
+            font-size: 0.95rem;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            white-space: nowrap;
+            box-shadow: 0 4px 15px rgba(167, 139, 250, 0.3);
+        }
+        
+        .back-to-home-btn:hover {
+            background: rgba(167, 139, 250, 0.35);
+            border-color: rgba(167, 139, 250, 0.8);
+            transform: translateX(-3px);
+            box-shadow: 0 6px 20px rgba(167, 139, 250, 0.4);
+        }
+        
+        .back-to-home-btn svg {
+            width: 20px;
+            height: 20px;
+            stroke: #fff;
+            transition: transform 0.3s ease;
+        }
+        
+        .back-to-home-btn:hover svg {
+            transform: translateX(-3px);
+        }
+        
+        @media (max-width: 768px) {
+            .policy-container {
+                padding: 40px 30px;
+            }
+            
+            .policy-title {
+                font-size: 2rem;
+            }
+            
+            .back-button-container {
+                top: 10px;
+                left: 10px;
+            }
+            
+            .back-to-home-btn {
+                padding: 10px 16px;
+                font-size: 0.85rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Back to Home Button - Fixed at top -->
+    <div class="back-button-container">
+        <a href="index.html" class="back-to-home-btn">
+            <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18"/>
+            </svg>
+            <span>Back to Home</span>
+        </a>
+    </div>
+    
+    <!-- Header -->
+    <header class="header">
+        <!-- Logo outside the navigation bar -->
+        <div class="logo-container">
+            <a href="index.html" style="display: flex; align-items: center; text-decoration: none;">
+                <img src="images/Group 568.svg" alt="Fiberise Fit Logo" class="logo">
+                <span class="logo-text">Fiberise Fit</span>
+            </a>
+        </div>
+        
+        <!-- Desktop Navigation bar -->
+        <nav class="navigation">
+            <ul class="nav-links">
+                <li><a href="index.html#home" class="nav-link">Home</a></li>
+                <li><a href="index.html#how" class="nav-link">How It Works</a></li>
+                <li><a href="index.html#timeline" class="nav-link">Timeline</a></li>
+                <li><a href="index.html#section-footer" class="nav-link">About</a></li>
+            </ul>
+        </nav>
+        
+        <!-- Cart Button -->
+        <button class="cart-button" id="cart-button">
+            <svg class="cart-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z"/>
+            </svg>
+            <span class="cart-count" id="cart-count">0</span>
+        </button>
+        
+        <!-- Mobile Hamburger Menu -->
+        <button class="hamburger-menu" id="hamburger-menu">
+            <span class="hamburger-line"></span>
+            <span class="hamburger-line"></span>
+            <span class="hamburger-line"></span>
+        </button>
+        
+        <!-- Mobile Navigation Menu -->
+        <nav class="mobile-navigation" id="mobile-navigation">
+            <ul class="mobile-nav-links">
+                <li><a href="index.html#home" class="mobile-nav-link">Home</a></li>
+                <li><a href="index.html#how" class="mobile-nav-link">How It Works</a></li>
+                <li><a href="index.html#timeline" class="mobile-nav-link">Timeline</a></li>
+                <li><a href="index.html#section-footer" class="mobile-nav-link">About</a></li>
+            </ul>
+        </nav>
+    </header>
+    
+    <!-- Policy Content -->
+    <section class="policy-section">
+        <!-- Background Particles -->
+        <div class="bg-particles">
+            <div class="bg-particle" style="left: 10%; top: 20%; animation-delay: 0s;"></div>
+            <div class="bg-particle" style="left: 85%; top: 15%; animation-delay: 0.5s;"></div>
+            <div class="bg-particle" style="left: 30%; top: 70%; animation-delay: 1s;"></div>
+            <div class="bg-particle" style="left: 70%; top: 60%; animation-delay: 1.5s;"></div>
+        </div>
+        
+        <div class="policy-container">
+            <h1 class="policy-title">Shipping & Delivery Policy</h1>
+            <p class="policy-date">Last updated on Oct 30 2025</p>
+            
+            <div class="policy-content">
+                <p>For International buyers, orders are shipped and delivered through registered international courier companies and/or International speed post only. For domestic buyers, orders are shipped through registered domestic courier companies and/or speed post only.</p>
+                
+                <p>Orders are shipped within 0-7 days or as per the delivery date agreed at the time of order confirmation and delivering of the shipment subject to Courier Company / post office norms.</p>
+                
+                <p>FIBERISE FIT PRIVATE LIMITED is not liable for any delay in delivery by the courier company / postal authorities and only guarantees to hand over the consignment to the courier company or postal authorities within 0-7 days from the date of the order and payment or as per the delivery date agreed at the time of order confirmation.</p>
+                
+                <p>Delivery of all orders will be to the address provided by the buyer. Delivery of our services will be confirmed on your mail ID as specified during registration.</p>
+                
+                <p>For any issues in utilizing our services you may contact our helpdesk on <strong>7011803119</strong> or <strong>support@fiberisefit.com</strong></p>
+            </div>
+        </div>
+    </section>
+    
+    <script src="script.js"></script>
+</body>
+</html>
+

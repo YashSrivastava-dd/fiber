@@ -1,0 +1,92 @@
+        /* Force header visibility */
+        .header {
+            opacity: 1 !important;
+            pointer-events: auto !important;
+            visibility: visible !important;
+        }
+        
+        body.splash-active .header {
+            opacity: 1 !important;
+            pointer-events: auto !important;
+            visibility: visible !important;
+        }
+        
+        /* Adjust navigation to show back button - match golden navbar style */
+        .navigation {
+            display: flex !important;
+            align-items: center;
+            gap: 0;
+            min-width: auto !important;
+            padding: 0.5rem 1.5rem !important;
+            opacity: 1 !important;
+            visibility: visible !important;
+        }
+        
+        .back-to-home-nav {
+            display: flex !important;
+            align-items: center;
+            gap: 8px;
+            padding: 8px 16px;
+            background: rgba(255, 255, 255, 0.15) !important;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 50px;
+            color: #fff !important;
+            text-decoration: none;
+            font-size: 0.85rem;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            margin-right: 15px;
+            white-space: nowrap;
+            opacity: 1 !important;
+            visibility: visible !important;
+        }
+        
+        .back-to-home-nav:hover {
+            background: rgba(255, 255, 255, 0.25) !important;
+            border-color: rgba(255, 255, 255, 0.3);
+            transform: translateX(-3px);
+        }
+        
+        .back-to-home-nav svg {
+            width: 16px;
+            height: 16px;
+            stroke: #fff;
+            transition: transform 0.3s ease;
+        }
+        
+        .back-to-home-nav:hover svg {
+            transform: translateX(-2px);
+        }
+        
+        .nav-links {
+            display: flex !important;
+            gap: 1rem;
+            margin: 0;
+        }
+        
+        @media (max-width: 768px) {
+            .policy-container {
+                padding: 40px 30px;
+            }
+            
+            .policy-title {
+                font-size: 2rem;
+            }
+            
+            .navigation {
+                display: flex !important;
+                padding: 0.5rem 1rem !important;
+            }
+            
+            .back-to-home-nav {
+                display: flex !important;
+                padding: 6px 12px;
+                font-size: 0.75rem;
+                margin-right: 10px;
+            }
+            
+            .back-to-home-nav svg {
+                width: 14px;
+                height: 14px;
+            }
+        }

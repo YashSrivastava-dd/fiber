@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Privacy Policy - Fiber X</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        /* Override any overflow restrictions from main CSS */
+        html, body {
+            overflow-x: hidden !important;
+            overflow-y: auto !important;
+            height: auto !important;
+            position: relative !important;
+        }
+        
+        body.splash-active {
+            overflow: auto !important;
+            height: auto !important;
+            position: relative !important;
+        }
+        
+        .policy-section {
+            min-height: 100vh;
+            padding: 120px 20px 80px;
+            background: linear-gradient(135deg, #0a0a0a 0%, #1a0a2e 100%);
+            position: relative;
+        }
+        
+        .policy-container {
+            max-width: 900px;
+            margin: 0 auto;
+            background: rgba(255, 255, 255, 0.03);
+            border-radius: 20px;
+            padding: 60px;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        .policy-title {
+            font-size: 3rem;
+            font-weight: 700;
+            color: #fff;
+            margin-bottom: 10px;
+            background: linear-gradient(135deg, #fff 0%, #a78bfa 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        
+        .policy-date {
+            font-size: 0.9rem;
+            color: rgba(255, 255, 255, 0.5);
+            margin-bottom: 40px;
+        }
+        
+        .policy-content {
+            color: rgba(255, 255, 255, 0.8);
+            line-height: 1.8;
+            font-size: 1rem;
+        }
+        
+        .policy-content h3 {
+            color: #fff;
+            font-size: 1.5rem;
+            margin-top: 30px;
+            margin-bottom: 15px;
+        }
+        
+        .policy-content p {
+            margin-bottom: 20px;
+        }
+        
+        .policy-content ul {
+            margin: 20px 0;
+            padding-left: 30px;
+        }
+        
+        .policy-content ul li {
+            margin-bottom: 10px;
+            position: relative;
+        }
+        
+        .policy-content ul li::marker {
+            color: #a78bfa;
+        }
+        
+        /* Back to Home Button */
+        .back-button-container {
+            position: fixed;
+            top: 20px;
+            left: 20px;
+            z-index: 9999;
+        }
+        
+        .back-to-home-btn {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            padding: 12px 24px;
+            background: rgba(167, 139, 250, 0.2);
+            border: 2px solid rgba(167, 139, 250, 0.5);
+            border-radius: 50px;
+            color: #fff;
+            text-decoration: none;
+            font-size: 0.95rem;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            white-space: nowrap;
+            box-shadow: 0 4px 15px rgba(167, 139, 250, 0.3);
+        }
+        
+        .back-to-home-btn:hover {
+            background: rgba(167, 139, 250, 0.35);
+            border-color: rgba(167, 139, 250, 0.8);
+            transform: translateX(-3px);
+            box-shadow: 0 6px 20px rgba(167, 139, 250, 0.4);
+        }
+        
+        .back-to-home-btn svg {
+            width: 20px;
+            height: 20px;
+            stroke: #fff;
+            transition: transform 0.3s ease;
+        }
+        
+        .back-to-home-btn:hover svg {
+            transform: translateX(-3px);
+        }
+        
+        @media (max-width: 768px) {
+            .policy-container {
+                padding: 40px 30px;
+            }
+            
+            .policy-title {
+                font-size: 2rem;
+            }
+            
+            .back-button-container {
+                top: 10px;
+                left: 10px;
+            }
+            
+            .back-to-home-btn {
+                padding: 10px 16px;
+                font-size: 0.85rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Back to Home Button - Fixed at top -->
+    <div class="back-button-container">
+        <a href="index.html" class="back-to-home-btn">
+            <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18"/>
+            </svg>
+            <span>Back to Home</span>
+        </a>
+    </div>
+    
+    <!-- Header -->
+    <header class="header">
+        <!-- Logo outside the navigation bar -->
+        <div class="logo-container">
+            <a href="index.html" style="display: flex; align-items: center; text-decoration: none;">
+                <img src="images/Group 568.svg" alt="Fiberise Fit Logo" class="logo">
+                <span class="logo-text">Fiberise Fit</span>
+            </a>
+        </div>
+        
+        <!-- Desktop Navigation bar -->
+        <nav class="navigation">
+            <ul class="nav-links">
+                <li><a href="index.html#home" class="nav-link">Home</a></li>
+                <li><a href="index.html#how" class="nav-link">How It Works</a></li>
+                <li><a href="index.html#timeline" class="nav-link">Timeline</a></li>
+                <li><a href="index.html#section-footer" class="nav-link">About</a></li>
+            </ul>
+        </nav>
+        
+        <!-- Cart Button -->
+        <button class="cart-button" id="cart-button">
+            <svg class="cart-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z"/>
+            </svg>
+            <span class="cart-count" id="cart-count">0</span>
+        </button>
+        
+        <!-- Mobile Hamburger Menu -->
+        <button class="hamburger-menu" id="hamburger-menu">
+            <span class="hamburger-line"></span>
+            <span class="hamburger-line"></span>
+            <span class="hamburger-line"></span>
+        </button>
+        
+        <!-- Mobile Navigation Menu -->
+        <nav class="mobile-navigation" id="mobile-navigation">
+            <ul class="mobile-nav-links">
+                <li><a href="index.html#home" class="mobile-nav-link">Home</a></li>
+                <li><a href="index.html#how" class="mobile-nav-link">How It Works</a></li>
+                <li><a href="index.html#timeline" class="mobile-nav-link">Timeline</a></li>
+                <li><a href="index.html#section-footer" class="mobile-nav-link">About</a></li>
+            </ul>
+        </nav>
+    </header>
+    
+    <!-- Policy Content -->
+    <section class="policy-section">
+        <!-- Background Particles -->
+        <div class="bg-particles">
+            <div class="bg-particle" style="left: 10%; top: 20%; animation-delay: 0s;"></div>
+            <div class="bg-particle" style="left: 85%; top: 15%; animation-delay: 0.5s;"></div>
+            <div class="bg-particle" style="left: 30%; top: 70%; animation-delay: 1s;"></div>
+            <div class="bg-particle" style="left: 70%; top: 60%; animation-delay: 1.5s;"></div>
+        </div>
+        
+        <div class="policy-container">
+            <h1 class="policy-title">Privacy Policy</h1>
+            <p class="policy-date">Last updated on Oct 30 2025</p>
+            
+            <div class="policy-content">
+                <p>This privacy policy sets out how FIBERISE FIT PRIVATE LIMITED uses and protects any information that you give FIBERISE FIT PRIVATE LIMITED when you visit their website and/or agree to purchase from them.</p>
+                
+                <p>FIBERISE FIT PRIVATE LIMITED is committed to ensuring that your privacy is protected. Should we ask you to provide certain information by which you can be identified when using this website, and then you can be assured that it will only be used in accordance with this privacy statement.</p>
+                
+                <p>FIBERISE FIT PRIVATE LIMITED may change this policy from time to time by updating this page. You should check this page from time to time to ensure that you adhere to these changes.</p>
+                
+                <h3>We may collect the following information:</h3>
+                <ul>
+                    <li>Name</li>
+                    <li>Contact information including email address</li>
+                    <li>Demographic information such as postcode, preferences and interests, if required</li>
+                    <li>Other information relevant to customer surveys and/or offers</li>
+                </ul>
+                
+                <h3>What we do with the information we gather</h3>
+                <p>We require this information to understand your needs and provide you with a better service, and in particular for the following reasons:</p>
+                <ul>
+                    <li>Internal record keeping.</li>
+                    <li>We may use the information to improve our products and services.</li>
+                    <li>We may periodically send promotional emails about new products, special offers or other information which we think you may find interesting using the email address which you have provided.</li>
+                    <li>From time to time, we may also use your information to contact you for market research purposes. We may contact you by email, phone, fax or mail. We may use the information to customise the website according to your interests.</li>
+                </ul>
+                
+                <p>We are committed to ensuring that your information is secure. In order to prevent unauthorised access or disclosure we have put in suitable measures.</p>
+                
+                <h3>How we use cookies</h3>
+                <p>A cookie is a small file which asks permission to be placed on your computer's hard drive. Once you agree, the file is added and the cookie helps analyze web traffic or lets you know when you visit a particular site. Cookies allow web applications to respond to you as an individual. The web application can tailor its operations to your needs, likes and dislikes by gathering and remembering information about your preferences.</p>
+                
+                <p>We use traffic log cookies to identify which pages are being used. This helps us analyze data about webpage traffic and improve our website in order to tailor it to customer needs. We only use this information for statistical analysis purposes and then the data is removed from the system.</p>
+                
+                <p>Overall, cookies help us provide you with a better website, by enabling us to monitor which pages you find useful and which you do not. A cookie in no way gives us access to your computer or any information about you, other than the data you choose to share with us.</p>
+                
+                <p>You can choose to accept or decline cookies. Most web browsers automatically accept cookies, but you can usually modify your browser setting to decline cookies if you prefer. This may prevent you from taking full advantage of the website.</p>
+                
+                <h3>Controlling your personal information</h3>
+                <p>You may choose to restrict the collection or use of your personal information in the following ways:</p>
+                <ul>
+                    <li>whenever you are asked to fill in a form on the website, look for the box that you can click to indicate that you do not want the information to be used by anybody for direct marketing purposes</li>
+                    <li>if you have previously agreed to us using your personal information for direct marketing purposes, you may change your mind at any time by writing to or emailing us at support@fiberisefit.com</li>
+                </ul>
+                
+                <p>We will not sell, distribute or lease your personal information to third parties unless we have your permission or are required by law to do so. We may use your personal information to send you promotional information about third parties which we think you may find interesting if you tell us that you wish this to happen.</p>
+                
+                <p>If you believe that any information we are holding on you is incorrect or incomplete, please write to 731/508 S/F, PLOT NO.7 BLOCK 56 DB GUPTA ROAD Karol Bagh Central Delhi New Delhi Delhi India 110005 Sat Nagar SO DELHI 110005, or contact us at 7011803119 or support@fiberisefit.com as soon as possible. We will promptly correct any information found to be incorrect.</p>
+            </div>
+        </div>
+    </section>
+    
+    <script src="script.js"></script>
+</body>
+</html>
+
