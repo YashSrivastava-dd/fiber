@@ -681,7 +681,7 @@ body::after {
 /* Tablet and up - side by side layout */
 @media (min-width: 768px) {
     .content {
-        grid-template-columns: 1fr 1fr;
+        grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.1fr);
         gap: var(--spacing-lg);
         min-height: 80vh;
     }
@@ -689,12 +689,14 @@ body::after {
 
 @media (min-width: 992px) {
     .content {
+        grid-template-columns: minmax(0, 0.8fr) minmax(0, 1.2fr);
         gap: var(--spacing-xl);
     }
 }
 
 @media (min-width: 1200px) {
     .content {
+        grid-template-columns: minmax(0, 0.75fr) minmax(0, 1.25fr);
         gap: var(--spacing-xxl);
     }
 }
@@ -833,11 +835,15 @@ body:not(.splash-active) .cta-button {
     opacity: 0;
     transform: translateY(80px);
     order: 1;
+    width: 100%;
+    min-width: 0;
 }
 
 @media (min-width: 768px) {
     .image-content {
         order: 2;
+        width: auto;
+        min-width: fit-content;
     }
 }
 
@@ -860,44 +866,26 @@ body:not(.splash-active) .image-content {
 .product-glow {
     position: relative;
     padding: var(--spacing-sm);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
 }
 
 @media (min-width: 768px) {
     .product-glow {
         padding: var(--spacing-lg);
+        width: auto;
+        min-width: fit-content;
     }
 }
 
 .product-image {
-    width: 100%;
-    max-width: 250px;
+    width: clamp(320px, 42vw, 450px);
     height: auto;
+    max-width: 100%;
     filter: drop-shadow(0 0 30px rgba(213, 139, 42, 0.3));
     animation: gentleGlow 3s ease-in-out infinite alternate;
-}
-
-@media (min-width: 576px) {
-    .product-image {
-        max-width: 280px;
-    }
-}
-
-@media (min-width: 768px) {
-    .product-image {
-        max-width: 300px;
-    }
-}
-
-@media (min-width: 992px) {
-    .product-image {
-        max-width: 350px;
-    }
-}
-
-@media (min-width: 1200px) {
-    .product-image {
-        max-width: 400px;
-    }
 }
 
 @keyframes gentleGlow {
@@ -1040,8 +1028,8 @@ body:not(.splash-active) .scroll-indicator {
     }
     
     .product-image {
-        width: min(300px, 75vw);
-        max-width: 320px;
+        width: min(450px, 90vw);
+        max-width: 500px;
         height: auto;
     }
     
@@ -1091,8 +1079,8 @@ body:not(.splash-active) .scroll-indicator {
     }
     
     .product-image {
-        width: min(260px, 70vw);
-        max-width: 280px;
+        width: min(400px, 85vw);
+        max-width: 450px;
     }
     
     .scroll-indicator {
@@ -3260,9 +3248,9 @@ body.splash-active .hero {
     }
     
     .product-image {
-        width: min(300px, 80vw);
+        width: min(500px, 90vw);
         height: auto;
-        max-width: 100%;
+        max-width: 600px;
     }
     
     /* PROBLEM SECTION MOBILE */
@@ -3762,7 +3750,7 @@ body.splash-active .hero {
     }
     
     .product-image {
-        width: min(200px, 40vw);
+        width: min(350px, 60vw);
     }
     
     .intro-image-extreme-left {
