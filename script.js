@@ -456,23 +456,112 @@ class ShopifyIntegration {
     }
     
     init() {
-        // Wait for Shopify SDK to load
-        if (typeof ShopifyBuy === 'undefined') {
-            console.error('Shopify Buy SDK not loaded');
-            return;
+        // Wait for Shopify SDK to load with retry mechanism
+        this.waitForShopifySDK().then(() => {
+            try {
+                // Check if ShopifyBuy is available
+                if (typeof ShopifyBuy === 'undefined') {
+                    console.error('Shopify Buy SDK not loaded after waiting');
+                    this.setupFallbackButtons();
+                    return;
+                }
+                
+                // Initialize Shopify client
+                this.client = ShopifyBuy.buildClient({
+                    domain: window.shopifyConfig.storeUrl || window.shopifyConfig.domain,
+                    storefrontAccessToken: window.shopifyConfig.storefrontAccessToken,
+                    apiVersion: window.shopifyConfig.storefrontApiVersion || '2023-04',
+                    language: window.shopifyConfig.language || 'en'
+                });
+                
+                console.log('Shopify client initialized successfully');
+                
+                // Set up button handlers
+                this.setupButtons();
+                
+                // Set up checkout button
+                this.setupCheckout();
+            } catch (error) {
+                console.error('Error initializing Shopify client:', error);
+                this.setupFallbackButtons();
+            }
+        }).catch(error => {
+            console.error('Failed to load Shopify SDK:', error);
+            this.setupFallbackButtons();
+        });
+    }
+    
+    waitForShopifySDK() {
+        return new Promise((resolve, reject) => {
+            let attempts = 0;
+            const maxAttempts = 10;
+            
+            const checkSDK = () => {
+                attempts++;
+                if (typeof ShopifyBuy !== 'undefined') {
+                    resolve();
+                } else if (attempts >= maxAttempts) {
+                    reject(new Error('Shopify SDK failed to load after multiple attempts'));
+                } else {
+                    setTimeout(checkSDK, 500);
+                }
+            };
+            
+            checkSDK();
+        });
+    }
+    
+    setupFallbackButtons() {
+        // Fallback: Add items directly to local cart without Shopify API
+        console.log('Using fallback cart system');
+        
+        const thirtyDayButton = document.querySelector('.plan-cta-30');
+        if (thirtyDayButton) {
+            thirtyDayButton.addEventListener('click', (e) => {
+                const button = e.currentTarget;
+                const originalText = button.textContent;
+                button.textContent = 'Adding...';
+                button.classList.add('loading');
+                button.disabled = true;
+                
+                setTimeout(() => {
+                    this.cart.addItem({
+                        variantId: 'fallback-30-day',
+                        productId: 'fallback-30-day',
+                        title: '30 Day Plan',
+                        price: 2499,
+                        image: 'images/9.svg'
+                    });
+                    button.textContent = originalText;
+                    button.classList.remove('loading');
+                    button.disabled = false;
+                }, 500);
+            });
         }
         
-        // Initialize Shopify client
-        this.client = ShopifyBuy.buildClient({
-            domain: window.shopifyConfig.domain,
-            storefrontAccessToken: window.shopifyConfig.storefrontAccessToken
-        });
-        
-        // Set up button handlers
-        this.setupButtons();
-        
-        // Set up checkout button
-        this.setupCheckout();
+        const hundredDayButton = document.querySelector('.plan-cta-100');
+        if (hundredDayButton) {
+            hundredDayButton.addEventListener('click', (e) => {
+                const button = e.currentTarget;
+                const originalText = button.textContent;
+                button.textContent = 'Adding...';
+                button.classList.add('loading');
+                button.disabled = true;
+                
+                setTimeout(() => {
+                    this.cart.addItem({
+                        variantId: 'fallback-100-day',
+                        productId: 'fallback-100-day',
+                        title: '100 Day Challenge',
+                        price: 6999,
+                        image: 'images/9.svg'
+                    });
+                    button.textContent = originalText;
+                    button.classList.remove('loading');
+                    button.disabled = false;
+                }, 500);
+            });
+        }
     }
     
     setupButtons() {
@@ -552,13 +641,40 @@ class ShopifyIntegration {
         try {
             console.log('Adding to cart:', productIdOrHandle);
             
+            // Check if client is initialized
+            if (!this.client) {
+                console.warn('Shopify client not initialized, using fallback');
+                this.cart.addItem({
+                    variantId: `fallback-${productIdOrHandle}`,
+                    productId: `fallback-${productIdOrHandle}`,
+                    title: title,
+                    price: price,
+                    image: 'images/9.svg'
+                });
+                return;
+            }
+            
             let product;
             
-            // Fetch product by handle
-            if (productIdOrHandle.startsWith('gid://shopify/Product/')) {
-                product = await this.client.product.fetch(productIdOrHandle);
-            } else {
-                product = await this.client.product.fetchByHandle(productIdOrHandle);
+            try {
+                // Fetch product by handle
+                if (productIdOrHandle.startsWith('gid://shopify/Product/')) {
+                    product = await this.client.product.fetch(productIdOrHandle);
+                } else {
+                    product = await this.client.product.fetchByHandle(productIdOrHandle);
+                }
+            } catch (fetchError) {
+                console.error('Error fetching product from Shopify:', fetchError);
+                // Fallback to local cart if Shopify fetch fails
+                console.log('Using fallback: Adding to local cart');
+                this.cart.addItem({
+                    variantId: `fallback-${productIdOrHandle}`,
+                    productId: `fallback-${productIdOrHandle}`,
+                    title: title,
+                    price: price,
+                    image: 'images/9.svg'
+                });
+                return;
             }
             
             if (product && product.variants && product.variants.length > 0) {
@@ -570,16 +686,30 @@ class ShopifyIntegration {
                     productId: product.id,
                     title: title || product.title,
                     price: price || parseFloat(variant.price.amount),
-                    image: product.images[0]?.src || null
+                    image: product.images && product.images[0]?.src || 'images/9.svg'
                 });
                 
                 console.log('Added to cart successfully');
             } else {
-                throw new Error('Product not found');
+                throw new Error('Product not found or has no variants');
             }
         } catch (error) {
             console.error('Error adding to cart:', error);
-            alert('Sorry, there was an error adding the product to your cart. Please try again.');
+            // Try fallback before showing error
+            try {
+                console.log('Attempting fallback cart addition');
+                this.cart.addItem({
+                    variantId: `fallback-${productIdOrHandle}`,
+                    productId: `fallback-${productIdOrHandle}`,
+                    title: title,
+                    price: price,
+                    image: 'images/9.svg'
+                });
+                console.log('Fallback cart addition successful');
+            } catch (fallbackError) {
+                console.error('Fallback also failed:', fallbackError);
+                alert('Sorry, there was an error adding the product to your cart. Please try again.');
+            }
         }
     }
     
@@ -592,6 +722,17 @@ class ShopifyIntegration {
                 return;
             }
             
+            // Check if we have fallback items (local cart only)
+            const hasFallbackItems = cartItems.some(item => item.variantId.startsWith('fallback-'));
+            
+            if (hasFallbackItems || !this.client) {
+                // If using fallback or client not available, redirect to contact page or show message
+                const total = this.cart.getTotal();
+                const itemsList = cartItems.map(item => `${item.title} (${item.quantity}x)`).join('\n');
+                alert(`Your cart items:\n${itemsList}\n\nTotal: ₹${total.toLocaleString('en-IN')}\n\nPlease contact us at support@fiberisefit.com to complete your order, or visit our store to checkout.`);
+                return;
+            }
+            
             console.log('Creating checkout with items:', cartItems);
             
             // Show loading state
@@ -600,8 +741,14 @@ class ShopifyIntegration {
             checkoutBtn.innerHTML = '<span>Processing...</span>';
             checkoutBtn.disabled = true;
             
-            // Create line items for checkout
-            const lineItems = cartItems.map(item => ({
+            // Filter out fallback items and create line items for checkout
+            const validItems = cartItems.filter(item => !item.variantId.startsWith('fallback-'));
+            
+            if (validItems.length === 0) {
+                throw new Error('No valid Shopify items in cart');
+            }
+            
+            const lineItems = validItems.map(item => ({
                 variantId: item.variantId,
                 quantity: item.quantity
             }));
@@ -618,12 +765,20 @@ class ShopifyIntegration {
             
         } catch (error) {
             console.error('Error creating checkout:', error);
-            alert('Sorry, there was an error processing your checkout. Please try again.');
             
             // Restore button
             const checkoutBtn = document.getElementById('cart-checkout-btn');
             checkoutBtn.innerHTML = '<span>Proceed to Checkout</span><svg class="checkout-arrow" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7l5 5m0 0l-5 5m5-5H6"/></svg>';
             checkoutBtn.disabled = false;
+            
+            // Show helpful error message
+            const cartItems = this.cart.getItems();
+            if (cartItems.length > 0) {
+                const total = this.cart.getTotal();
+                alert(`There was an issue with Shopify checkout.\n\nYour cart total: ₹${total.toLocaleString('en-IN')}\n\nPlease contact us at support@fiberisefit.com to complete your order.`);
+            } else {
+                alert('Sorry, there was an error processing your checkout. Please try again.');
+            }
         }
     }
 }
