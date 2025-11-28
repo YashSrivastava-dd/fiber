@@ -70,7 +70,7 @@ class ScrollAnimations {
         }, observerOptions);
         
         // Observe elements that should animate on scroll
-        const animateElements = document.querySelectorAll('.text-content, .image-content, .scroll-indicator, .problem-heading, .problem-sub, .intro-title, .intro-subtitle, .intro-copy, .intro-image, .how-title, .how-badge, .how-card, .accordion, .device-frame, .timeline-header, .timeline-item, .timeline-cta, .challenge-header, .plan-card, .challenge-footer');
+        const animateElements = document.querySelectorAll('.text-content, .image-content, .scroll-indicator, .problem-heading, .problem-sub, .intro-title, .intro-subtitle, .intro-copy, .intro-image, .how-title, .how-badge, .how-card, .accordion, .device-frame, .timeline-header, .timeline-item, .timeline-cta, .challenge-header, .plan-card, .challenge-footer, .coming-soon-section');
         animateElements.forEach(el => this.observer.observe(el));
         
         // Observe benefit items for staggered animation
@@ -515,52 +515,121 @@ class ShopifyIntegration {
         // Fallback: Add items directly to local cart without Shopify API
         console.log('Using fallback cart system');
         
-        const thirtyDayButton = document.querySelector('.plan-cta-30');
-        if (thirtyDayButton) {
-            thirtyDayButton.addEventListener('click', (e) => {
+        // Coming Soon CTA Button (fallback)
+        const comingSoonCta = document.querySelector('.coming-soon-cta');
+        if (comingSoonCta && comingSoonCta.classList.contains('dummy-add-to-cart')) {
+            comingSoonCta.addEventListener('click', (e) => {
+                e.preventDefault();
                 const button = e.currentTarget;
-                const originalText = button.textContent;
-                button.textContent = 'Adding...';
-                button.classList.add('loading');
-                button.disabled = true;
+                const originalText = button.textContent.replace(' (Coming Soon)', '');
+                
+                // Show coming soon message
+                button.textContent = 'Coming Soon!';
+                button.style.background = 'rgba(213, 139, 42, 0.2)';
+                button.style.color = '#d58b2a';
+                button.style.borderColor = '#d58b2a';
                 
                 setTimeout(() => {
-                    this.cart.addItem({
-                        variantId: 'fallback-30-day',
-                        productId: 'fallback-30-day',
-                        title: '30 Day Plan',
-                        price: 2499,
-                        image: 'images/9.svg'
-                    });
-                    button.textContent = originalText;
-                    button.classList.remove('loading');
-                    button.disabled = false;
-                }, 500);
+                    button.textContent = originalText + ' (Coming Soon)';
+                    button.style.background = '';
+                    button.style.color = '';
+                    button.style.borderColor = '';
+                }, 2000);
             });
+        }
+        
+        const thirtyDayButton = document.querySelector('.plan-cta-30');
+        if (thirtyDayButton) {
+            // Check if it's a dummy button (coming soon)
+            if (thirtyDayButton.classList.contains('dummy-add-to-cart')) {
+                thirtyDayButton.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    const button = e.currentTarget;
+                    const originalText = button.textContent.replace(' (Coming Soon)', '');
+                    
+                    // Show coming soon message
+                    button.textContent = 'Coming Soon!';
+                    button.style.background = 'rgba(213, 139, 42, 0.2)';
+                    button.style.color = '#d58b2a';
+                    button.style.borderColor = '#d58b2a';
+                    
+                    setTimeout(() => {
+                        button.textContent = originalText + ' (Coming Soon)';
+                        button.style.background = '';
+                        button.style.color = '';
+                        button.style.borderColor = '';
+                    }, 2000);
+                });
+            } else {
+                // Regular fallback add to cart
+                thirtyDayButton.addEventListener('click', (e) => {
+                    const button = e.currentTarget;
+                    const originalText = button.textContent;
+                    button.textContent = 'Adding...';
+                    button.classList.add('loading');
+                    button.disabled = true;
+                    
+                    setTimeout(() => {
+                        this.cart.addItem({
+                            variantId: 'fallback-30-day',
+                            productId: 'fallback-30-day',
+                            title: '30 Day Plan',
+                            price: 2499,
+                            image: 'images/9.svg'
+                        });
+                        button.textContent = originalText;
+                        button.classList.remove('loading');
+                        button.disabled = false;
+                    }, 500);
+                });
+            }
         }
         
         const hundredDayButton = document.querySelector('.plan-cta-100');
         if (hundredDayButton) {
-            hundredDayButton.addEventListener('click', (e) => {
-                const button = e.currentTarget;
-                const originalText = button.textContent;
-                button.textContent = 'Adding...';
-                button.classList.add('loading');
-                button.disabled = true;
-                
-                setTimeout(() => {
-                    this.cart.addItem({
-                        variantId: 'fallback-100-day',
-                        productId: 'fallback-100-day',
-                        title: '100 Day Challenge',
-                        price: 6999,
-                        image: 'images/9.svg'
-                    });
-                    button.textContent = originalText;
-                    button.classList.remove('loading');
-                    button.disabled = false;
-                }, 500);
-            });
+            // Check if it's a dummy button (coming soon)
+            if (hundredDayButton.classList.contains('dummy-add-to-cart')) {
+                hundredDayButton.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    const button = e.currentTarget;
+                    const originalText = button.textContent.replace(' (Coming Soon)', '');
+                    
+                    // Show coming soon message
+                    button.textContent = 'Coming Soon!';
+                    button.style.background = 'rgba(213, 139, 42, 0.2)';
+                    button.style.color = '#d58b2a';
+                    button.style.borderColor = '#d58b2a';
+                    
+                    setTimeout(() => {
+                        button.textContent = originalText + ' (Coming Soon)';
+                        button.style.background = '';
+                        button.style.color = '';
+                        button.style.borderColor = '';
+                    }, 2000);
+                });
+            } else {
+                // Regular fallback add to cart
+                hundredDayButton.addEventListener('click', (e) => {
+                    const button = e.currentTarget;
+                    const originalText = button.textContent;
+                    button.textContent = 'Adding...';
+                    button.classList.add('loading');
+                    button.disabled = true;
+                    
+                    setTimeout(() => {
+                        this.cart.addItem({
+                            variantId: 'fallback-100-day',
+                            productId: 'fallback-100-day',
+                            title: '100 Day Challenge',
+                            price: 6999,
+                            image: 'images/9.svg'
+                        });
+                        button.textContent = originalText;
+                        button.classList.remove('loading');
+                        button.disabled = false;
+                    }, 500);
+                });
+            }
         }
     }
     
@@ -581,42 +650,111 @@ class ShopifyIntegration {
             });
         }
         
+        // Coming Soon CTA Button
+        const comingSoonCta = document.querySelector('.coming-soon-cta');
+        if (comingSoonCta && comingSoonCta.classList.contains('dummy-add-to-cart')) {
+            comingSoonCta.addEventListener('click', (e) => {
+                e.preventDefault();
+                const button = e.currentTarget;
+                const originalText = button.textContent.replace(' (Coming Soon)', '');
+                
+                // Show coming soon message
+                button.textContent = 'Coming Soon!';
+                button.style.background = 'rgba(213, 139, 42, 0.2)';
+                button.style.color = '#d58b2a';
+                button.style.borderColor = '#d58b2a';
+                
+                setTimeout(() => {
+                    button.textContent = originalText + ' (Coming Soon)';
+                    button.style.background = '';
+                    button.style.color = '';
+                    button.style.borderColor = '';
+                }, 2000);
+            });
+        }
+        
         // 30 Day Plan Button
         const thirtyDayButton = document.querySelector('.plan-cta-30');
         if (thirtyDayButton) {
-            thirtyDayButton.addEventListener('click', (e) => {
-                const button = e.currentTarget;
-                const originalText = button.textContent;
-                button.textContent = 'Adding...';
-                button.classList.add('loading');
-                button.disabled = true;
-                
-                this.addToCart(window.shopifyConfig.products.thirtyDay, '30 Day Plan', 2499)
-                    .finally(() => {
-                        button.textContent = originalText;
-                        button.classList.remove('loading');
-                        button.disabled = false;
-                    });
-            });
+            // Check if it's a dummy button (coming soon)
+            if (thirtyDayButton.classList.contains('dummy-add-to-cart')) {
+                thirtyDayButton.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    const button = e.currentTarget;
+                    const originalText = button.textContent.replace(' (Coming Soon)', '');
+                    
+                    // Show coming soon message
+                    button.textContent = 'Coming Soon!';
+                    button.style.background = 'rgba(213, 139, 42, 0.2)';
+                    button.style.color = '#d58b2a';
+                    button.style.borderColor = '#d58b2a';
+                    
+                    setTimeout(() => {
+                        button.textContent = originalText + ' (Coming Soon)';
+                        button.style.background = '';
+                        button.style.color = '';
+                        button.style.borderColor = '';
+                    }, 2000);
+                });
+            } else {
+                // Regular add to cart functionality
+                thirtyDayButton.addEventListener('click', (e) => {
+                    const button = e.currentTarget;
+                    const originalText = button.textContent;
+                    button.textContent = 'Adding...';
+                    button.classList.add('loading');
+                    button.disabled = true;
+                    
+                    this.addToCart(window.shopifyConfig.products.thirtyDay, '30 Day Plan', 2499)
+                        .finally(() => {
+                            button.textContent = originalText;
+                            button.classList.remove('loading');
+                            button.disabled = false;
+                        });
+                });
+            }
         }
         
         // 100 Day Challenge Button
         const hundredDayButton = document.querySelector('.plan-cta-100');
         if (hundredDayButton) {
-            hundredDayButton.addEventListener('click', (e) => {
-                const button = e.currentTarget;
-                const originalText = button.textContent;
-                button.textContent = 'Adding...';
-                button.classList.add('loading');
-                button.disabled = true;
-                
-                this.addToCart(window.shopifyConfig.products.hundredDay, '100 Day Challenge', 6999)
-                    .finally(() => {
-                        button.textContent = originalText;
-                        button.classList.remove('loading');
-                        button.disabled = false;
-                    });
-            });
+            // Check if it's a dummy button (coming soon)
+            if (hundredDayButton.classList.contains('dummy-add-to-cart')) {
+                hundredDayButton.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    const button = e.currentTarget;
+                    const originalText = button.textContent.replace(' (Coming Soon)', '');
+                    
+                    // Show coming soon message
+                    button.textContent = 'Coming Soon!';
+                    button.style.background = 'rgba(213, 139, 42, 0.2)';
+                    button.style.color = '#d58b2a';
+                    button.style.borderColor = '#d58b2a';
+                    
+                    setTimeout(() => {
+                        button.textContent = originalText + ' (Coming Soon)';
+                        button.style.background = '';
+                        button.style.color = '';
+                        button.style.borderColor = '';
+                    }, 2000);
+                });
+            } else {
+                // Regular add to cart functionality
+                hundredDayButton.addEventListener('click', (e) => {
+                    const button = e.currentTarget;
+                    const originalText = button.textContent;
+                    button.textContent = 'Adding...';
+                    button.classList.add('loading');
+                    button.disabled = true;
+                    
+                    this.addToCart(window.shopifyConfig.products.hundredDay, '100 Day Challenge', 6999)
+                        .finally(() => {
+                            button.textContent = originalText;
+                            button.classList.remove('loading');
+                            button.disabled = false;
+                        });
+                });
+            }
         }
     }
     

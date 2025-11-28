@@ -2289,6 +2289,101 @@ body.splash-active .hero {
     margin: 0 auto 4rem;
 }
 
+/* Coming Soon Section */
+.coming-soon-section {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 4rem 0;
+    margin: 2rem 0;
+    opacity: 0;
+    transform: translateY(50px);
+}
+
+.coming-soon-section.animate-in {
+    animation: fadeInUp 1s ease-out 0.4s both;
+}
+
+.coming-soon-content {
+    text-align: center;
+    max-width: 600px;
+    padding: 3rem 2rem;
+    background: rgba(255, 255, 255, 0.05);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    border-radius: 2rem;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+}
+
+.coming-soon-badge-large {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.75rem;
+    background: linear-gradient(135deg, #666 0%, #888 100%);
+    color: #fff;
+    padding: 1rem 2rem;
+    border-radius: 2rem;
+    font-size: 1.125rem;
+    font-weight: 600;
+    margin-bottom: 2rem;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+}
+
+.coming-soon-badge-large .badge-icon {
+    font-size: 1.5rem;
+    animation: pulse 2s ease-in-out infinite;
+}
+
+.coming-soon-text {
+    font-family: 'Avenir Next LT Pro', sans-serif;
+    font-size: 1.25rem;
+    color: rgba(255, 255, 255, 0.7);
+    margin-bottom: 2.5rem;
+    line-height: 1.6;
+}
+
+.coming-soon-cta {
+    background: linear-gradient(135deg, #d58b2a 0%, #e7a23c 100%);
+    color: #fff;
+    border: none;
+    padding: 1.25rem 3rem;
+    font-size: 1.125rem;
+    font-weight: 600;
+    border-radius: 2rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-family: 'Avenir Next LT Pro', sans-serif;
+    letter-spacing: 0.5px;
+    box-shadow: 0 6px 20px rgba(213, 139, 42, 0.4);
+}
+
+.coming-soon-cta:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 30px rgba(213, 139, 42, 0.6);
+}
+
+.coming-soon-cta.dummy-add-to-cart {
+    background: rgba(255, 255, 255, 0.1) !important;
+    color: rgba(255, 255, 255, 0.5) !important;
+    border: 2px solid rgba(255, 255, 255, 0.3) !important;
+    cursor: not-allowed;
+    box-shadow: none !important;
+}
+
+.coming-soon-cta.dummy-add-to-cart:hover {
+    background: rgba(255, 255, 255, 0.15) !important;
+    color: rgba(255, 255, 255, 0.6) !important;
+    transform: none !important;
+    box-shadow: none !important;
+}
+
+.coming-soon-cta.dummy-add-to-cart::after {
+    content: ' (Coming Soon)';
+    font-size: 0.85em;
+    opacity: 0.7;
+}
+
 .plan-card {
     position: relative;
     background: transparent;
@@ -2316,12 +2411,19 @@ body.splash-active .hero {
     box-shadow: 0 20px 40px rgba(213, 139, 42, 0.2);
 }
 
+.plan-card-30 {
+    position: relative;
+    padding-top: 2rem;
+}
+
 .plan-card-30:hover {
     border-color: #666;
 }
 
 .plan-card-100 {
     border-color: #d58b2a;
+    position: relative;
+    padding-top: 2rem;
 }
 
 .plan-card-100:hover {
@@ -2344,6 +2446,40 @@ body.splash-active .hero {
     align-items: center;
     gap: 0.5rem;
     z-index: 10;
+}
+
+.coming-soon-badge {
+    position: absolute;
+    top: -1rem;
+    left: 50%;
+    transform: translateX(-50%);
+    background: linear-gradient(135deg, #666 0%, #888 100%);
+    color: #fff;
+    padding: 0.5rem 1rem;
+    border-radius: 2rem;
+    font-size: 0.875rem;
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    z-index: 10;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+}
+
+.coming-soon-badge .badge-icon {
+    font-size: 1rem;
+    animation: pulse 2s ease-in-out infinite;
+}
+
+@keyframes pulse {
+    0%, 100% {
+        opacity: 1;
+        transform: scale(1);
+    }
+    50% {
+        opacity: 0.7;
+        transform: scale(1.1);
+    }
 }
 
 .badge-icon {
@@ -2465,6 +2601,26 @@ body.splash-active .hero {
     transform: scale(1.05);
 }
 
+.dummy-add-to-cart {
+    background: rgba(255, 255, 255, 0.1) !important;
+    color: rgba(255, 255, 255, 0.5) !important;
+    border: 2px solid rgba(255, 255, 255, 0.3) !important;
+    cursor: not-allowed;
+    position: relative;
+}
+
+.dummy-add-to-cart:hover {
+    background: rgba(255, 255, 255, 0.15) !important;
+    color: rgba(255, 255, 255, 0.6) !important;
+    transform: none !important;
+}
+
+.dummy-add-to-cart::after {
+    content: ' (Coming Soon)';
+    font-size: 0.85em;
+    opacity: 0.7;
+}
+
 .plan-cta-100 {
     background: #d58b2a;
     color: #000;
@@ -2474,6 +2630,19 @@ body.splash-active .hero {
     background: #fff;
     transform: scale(1.05);
     box-shadow: 0 10px 30px rgba(213, 139, 42, 0.4);
+}
+
+.plan-cta-100.dummy-add-to-cart {
+    background: rgba(255, 255, 255, 0.1) !important;
+    color: rgba(255, 255, 255, 0.5) !important;
+    border: 2px solid rgba(255, 255, 255, 0.3) !important;
+}
+
+.plan-cta-100.dummy-add-to-cart:hover {
+    background: rgba(255, 255, 255, 0.15) !important;
+    color: rgba(255, 255, 255, 0.6) !important;
+    transform: none !important;
+    box-shadow: none !important;
 }
 
 .challenge-footer {
@@ -2599,6 +2768,24 @@ body.splash-active .hero {
     
     .plan-card {
         max-width: 100%;
+    }
+    
+    .coming-soon-content {
+        padding: 2.5rem 1.5rem;
+    }
+    
+    .coming-soon-badge-large {
+        font-size: 1rem;
+        padding: 0.875rem 1.75rem;
+    }
+    
+    .coming-soon-text {
+        font-size: 1.125rem;
+    }
+    
+    .coming-soon-cta {
+        padding: 1rem 2.5rem;
+        font-size: 1rem;
     }
 }
 
@@ -3532,6 +3719,35 @@ body.splash-active .hero {
         gap: 1.5rem;
         padding: 0 1rem;
         margin-bottom: 2rem;
+    }
+    
+    .coming-soon-section {
+        padding: 2rem 0;
+        margin: 1rem 0;
+    }
+    
+    .coming-soon-content {
+        padding: 2rem 1.5rem;
+    }
+    
+    .coming-soon-badge-large {
+        font-size: 0.95rem;
+        padding: 0.75rem 1.5rem;
+        margin-bottom: 1.5rem;
+    }
+    
+    .coming-soon-badge-large .badge-icon {
+        font-size: 1.25rem;
+    }
+    
+    .coming-soon-text {
+        font-size: 1rem;
+        margin-bottom: 2rem;
+    }
+    
+    .coming-soon-cta {
+        padding: 1rem 2rem;
+        font-size: 0.95rem;
     }
     
     .plan-card {
