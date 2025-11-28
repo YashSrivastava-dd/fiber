@@ -70,7 +70,7 @@ class ScrollAnimations {
         }, observerOptions);
         
         // Observe elements that should animate on scroll
-        const animateElements = document.querySelectorAll('.text-content, .image-content, .scroll-indicator, .problem-heading, .problem-sub, .intro-title, .intro-subtitle, .intro-copy, .intro-image, .how-title, .how-badge, .how-card, .accordion, .device-frame, .timeline-header, .timeline-item, .timeline-cta, .challenge-header, .plan-card, .challenge-footer, .coming-soon-section');
+        const animateElements = document.querySelectorAll('.text-content, .image-content, .scroll-indicator, .problem-heading, .problem-sub, .intro-title, .intro-subtitle, .intro-copy, .intro-image, .how-title, .how-badge, .how-card, .accordion, .device-frame, .timeline-header, .timeline-item, .timeline-cta, .challenge-header, .plan-card, .challenge-footer, .coming-soon-section, .coming-soon-badge-section, .problem .coming-soon-badge-section');
         animateElements.forEach(el => this.observer.observe(el));
         
         // Observe benefit items for staggered animation
